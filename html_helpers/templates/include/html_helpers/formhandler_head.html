@@ -1,0 +1,36 @@
+<script type="text/javascript">
+	function handleFormRepsonse(responseText, statusText) {
+		eval("response = " + responseText);
+		var form_id = "#" + response["form_class"] + "_" + response["form_id"]
+		var replaceNode = $(form_id + " .inner_formhandler");
+		//replaceNode.before(response["new_form"]).remove();
+		replaceNode.html(response["new_form"]);
+		
+		// give focus to first input element in new fomr
+		replaceNode.find("input:visible, select:visible, textarea:visible")[0].focus();
+		
+		var parent_form = $(form_id);
+		parent_form.removeClass("ajax_loading");
+		$(parent_form).find("input, select, textarea").removeAttr("disabled");
+		
+		// global extra_handler
+		{% if extra_handler %}{{extra_handler}}(response);{% endif %}
+		
+		// form-specific extra_handler
+		var form_extra_handler = $(form_id + " .extra_handler").val();
+		if ("None" != form_extra_handler) {
+			eval(form_extra_handler + "(response)");
+		}
+	}
+	function startFormSubmission(values, formNode, options) {
+		formNode.right = formNode.right + 32;
+		formNode.addClass("ajax_loading");
+		$(formNode).find("input, select, textarea").attr("disabled", "disabled");
+	}
+	var ajax_submit_handlers = { "success": handleFormRepsonse, "beforeSubmit": startFormSubmission };
+	$(document).ready(function()
+	{
+		$(".form_handler").ajaxForm(ajax_submit_handlers);
+		$(".form_handler").addClass("ajax_loadable");
+	});
+</script>

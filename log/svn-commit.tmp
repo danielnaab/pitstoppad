@@ -1,0 +1,11 @@
+reorder templates
+--This line, and those below, will be ignored--
+
+M    templates/log/form_fillupaction.html
+A    templates/log/include
+A    templates/log/include/templatetags
+A    templates/log/include/templatetags/action_form.html
+A    templates/log/include/templatetags/action_form_head.html
+A    templates/log/include/templatetags/new_action_form.html
+M    templates/log/edit.html
+D    templates/include

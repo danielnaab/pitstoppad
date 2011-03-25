@@ -1,0 +1,47 @@
+{% extends "vehicle/base.html" %} 
+
+{% load i18n html_helpers %} 
+{% load vehicles %} 
+
+{% block head_title %}{{vehicle}}{% endblock %}
+{% block page_title %}{{vehicle}}{% endblock %}
+	
+{% block body %}
+
+<div><a href="{% url garage_my_garage %}?add_vehicle={{vehicle.id}}">Add to Garage</a></div>
+<div class="left width_33p">
+	<table>
+		<caption>Vehicle Statistics</caption>
+		{#<tr><td>Air Pollution Score</td><td>{{vehicle.}}</td></tr>#}
+		{#<tr><td>Safety</td><td>{{vehicle.}}</td></tr>#}
+		<tr><td>Size Class</td><td>{{vehicle.get_vehicle_class_display}}</td></tr>
+		<tr><td>Engine Size (liters)</td><td>{{vehicle.displacement_in_liters}}</td></tr>
+		<tr><td>Cylinders</td><td>{{vehicle.number_of_cylinders}}</td></tr>
+		<tr><td>Transmission</td><td>{{vehicle.get_transmission_display}}</td></tr>
+		<tr><td>Drive</td><td>{{vehicle.get_drive_axle_type_display}}</td></tr>
+		<tr><td>Gas Guzzler</td><td>{{vehicle.gas_guzzler|yesno:"Yes,No"}}</td></tr>
+		<tr><td>Turbocharger</td><td>{{vehicle.turbocharger|yesno:"Yes,No"}}</td></tr>
+		<tr><td>Supercharger</td><td>{{vehicle.supercharger|yesno:"Yes,No"}}</td></tr>
+		<tr><td>Passenger Volume</td><td>{{vehicle.display_passenger_volume}} ft<sup>3</sup></td></tr>
+		<tr><td>Luggage Volume</td><td>{{vehicle.display_luggage_volume}} ft<sup>3</sup></td></tr>
+		<tr><td>Engine Characteristics</td><td>{{vehicle.engine_block}}</td></tr>
+		<tr><td>Trans Characteristics</td><td>{{vehicle.transmission_description}}</td></tr>
+	</table>
+</div>
+
+<div class="left width_33p">
+	<table style="width: 100%;">
+		<caption>Fuel Economy (adjusted to 2008 standards)</caption>
+		<tr><td>City MPG</td><td>{{vehicle.city08}}</td></tr>
+		<tr><td>Highway MPG</td><td>{{vehicle.highway08}}</td></tr>
+		<tr><td>City/Highway Combined MPG</td><td>{{vehicle.combined08}}</td></tr>
+		<tr><td>City MPG</td><td>{{vehicle.ucitya08}}</td></tr>
+		<tr><td>Highway MPG</td><td>{{vehicle.uhighwaya08}}</td></tr>
+		<tr><td>City/Highway Combined MPG</td><td>{{vehicle.ucombineda08}}</td></tr>
+	</table>
+</div>
+
+<div class="left width_33p">
+	{% vehicle_image_search vehicle %}
+</div>
+{% endblock %}

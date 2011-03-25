@@ -1,0 +1,4 @@
+$("form#action_form_new").ajaxForm( {target: "#action_form_new#message", success: showResponse} );
+{% for action in actions %}
+$("form#action_form_{{action.id}}").ajaxForm( {target: "#action_form_{{action.id}}#message", success: showResponse} );
+{% endfor %}

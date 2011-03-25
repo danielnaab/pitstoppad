@@ -1,0 +1,147 @@
+{% extends "garage/base.html" %} 
+{% load i18n ajax html_helpers cache_buster units garage %}
+
+{% block head_title %}{% if show_edit_ui %}Your{% else %}{{user|title}}'s{% endif %} Garage{% endblock %}
+{% block page_title %}{% if show_edit_ui %}Your{% else %}{{user|title}}'s{% endif %} Garage{% endblock %}
+
+{% block extra_head %}
+{{ block.super }}
+{% css_tag 'css/datepicker.css' %}
+{% endblock %}
+
+{% block body %}
+<div class="left width_33p">
+{% block garage_nav %}
+	{% if show_edit_ui %}{% if show_what_next %}
+	{% info_box_top %}
+	<dl class="slick">
+		<dt>What next?</dt>
+		<dd>here are some things to do to complete your signup</dd>
+		
+		{% ifequal user.emailaddress_set.count 0 %}
+		<dt><a href="{% url acct_email %}">Verify an email address</a></dt>
+		<dd>so you can receive notifications and reset your password.</dd>
+		{% endifequal %}
+		
+		<dt><a href="{% url avatar_change %}">Add an avatar</a></dt>
+		<dd>so people can see what you look like.</dd>
+		{% comment %}
+		<dt><a href="{% url friends_app.views.friends %}">Invite more people to the site</a></dt>
+		<dd>so more people can share in the fun.</dd>
+		{% endcomment %}
+	</dl>
+	{% info_box_bottom %}
+	{% endif %}{% endif %}
+	{% info_box_top %}
+	<dl class="slick">
+		<dt>{% with garage.garagevehicle_set.count as count %}
+			You have <strong>{{count}} vehicle{{count|pluralize}}</strong> in your garage.
+		{% endwith %}</dt>
+		<dd>
+			Your average fuel economy is <strong>{{garage.average_fuel_economy_string}}</strong>.
+		</dd>
+		<dd>
+			You have logged a total of <strong>{{garage.total_mileage_logged_string}}</strong>.
+		</dd>
+		<dd>
+			Your total vehicle purchase price is <strong>{{garage.total_cost_logged_string}}</strong> and you've spent <strong>{{garage.total_cost_logged_string}}</strong> on fuel and maintenance.
+		</dd>
+	</dl>
+	{% info_box_bottom %}
+	<div class="center">
+		{% include 'adsense/250x250_images.html' %}
+	</div>
+{% endblock %}
+</div>
+
+<div class="right width_66p">
+{% block garage_content %}
+	
+	{% if show_edit_ui %}
+		{% info_box_top %}
+		{% if add_new_in_progress %}
+			{% for form_dict in form_handler.forms.GarageVehicleForm %}
+				{% ifequal form_dict.form_id 'new_form' %}
+					{% formhandler_form_no_ajax 'GarageVehicleForm' form_dict %}
+				{% endifequal %}
+			{% endfor %}
+		{% else %}
+			<table>
+				<caption>Add a new vehicle to your garage</caption>
+				<tr><td>
+				{% with form_handler.forms.DynamicVehicleSelectForm.0 as form_dict %}
+					{% formhandler_form 'DynamicVehicleSelectForm' form_dict %}
+				{% endwith %}
+				</td></tr>
+			</table>
+		{% endif %}
+		{% info_box_bottom %}
+	{% endif %}
+	
+	{% if not show_edit_ui %}{% if user.is_authenticated %}{% ifnotequal user garage.user %}
+		{% toggle_follow_form user garage.user request.path %}
+	{% endifnotequal %}{% endif %}{% endif %}
+	{% info_box_top %}
+	
+	{% if form_handler.forms.GarageVehicleForm %}
+	{% comment %} {% ifnotequal form_handler.forms.GarageVehicleForm.__len__ 1 %} {% endcomment %}
+		<table width="100%">
+			<caption>Vehicles in {% if show_edit_ui %}your{% else %}{{user|title}}'s{% endif %} garage</caption>
+			<thead>
+				<tr style="text-align: left;">
+					{% if show_edit_ui %}<th>&nbsp;</th>{% endif %}
+					<th>Vehicle</th>
+					<th>Purchase Date</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for form_dict in form_handler.forms.GarageVehicleForm %}
+				{% ifnotequal form_dict.form_id 'new_form' %}
+				{% with form_dict.instance as garage_vehicle %}
+				<tr>
+					{% if show_edit_ui %}<td><a href="{% url log_edit garage_vehicle.log.id %}">Edit Log</a></td>{% endif %}
+					<td><a href="{{ garage_vehicle.vehicle.get_absolute_url }}">{{garage_vehicle}}</a></td>
+					<td>{{garage_vehicle.purchase_date|date:"m/d/Y"}}</td>
+					<td>{{garage_vehicle.purchase_price|default:"n/a"}}</td>
+				</tr>
+				<tr class="thin_bottom">
+					{% if show_edit_ui %}<td>&nbsp;</td>{% endif %}
+					<td colspan="3">{{garage_vehicle.notes|linebreaksbr}}</td>
+				</tr>
+				{% if show_edit_ui %}
+				{% comment %}
+				<tr style="display: none;">
+					<td colspan="4">
+						{% formhandler_form 'GarageVehicleForm' form_dict %}
+					</td>
+				</tr>
+				{% endcomment %}
+				{% endif %}
+				{% endwith %}
+				{% endifnotequal %}
+			{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<div><strong>There are no vehicles in {% if show_edit_ui %}your{% else %}{{user|title}}'s{% endif %} garage</strong></div>
+	{% endif %}
+	{% info_box_bottom %}
+{% endblock %}
+</div>
+
+{% endblock %}
+
+{% block extra_body %}
+{{ block.super }}
+	{% js_tag 'js/jquery.form.js' %}
+	{% formhandler_head form_handler 'updateActionRow' %}
+	
+	{% js_tag 'js/jquery.ui.datepicker.js' %}
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			$(".datepicker").datepicker();
+		});
+	</script>
+{% endblock %}

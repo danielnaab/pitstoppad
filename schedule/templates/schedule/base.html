@@ -1,0 +1,15 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block rtab_id %}id="schedules_tab"{% endblock %}
+
+{% block head_title %}Schedules{% endblock %}
+{% block page_title %}Schedules{% endblock %}
+
+{% block subnav %}
+    {% if user.is_authenticated %}
+        &nbsp;
+    {% else %}
+    {% endif %}
+{% endblock %}

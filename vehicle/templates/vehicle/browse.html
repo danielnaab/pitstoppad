@@ -1,0 +1,102 @@
+{% extends "vehicle/base.html" %} 
+
+{% load i18n html_helpers %}
+{% load pagination_tags %}
+{% load vehicles %}
+{% load extra_filters %}
+
+{% block head_title %}Browse Vehicles{% endblock %}
+{% block page_title %}Browse Vehicles{% endblock %}
+	
+{% block body %}
+
+<div class="left width_25p">
+	{% info_box_top %}
+		<table style="width: 100%;">
+		{% if user_parameters %}
+			<caption>Vehicles Matching:</caption>
+			{% for key, value in user_parameters.iteritems %}
+			<tr><td>{{key|title|replace:"_, "}}</td><td style="text-align: right;">{% epavehicle_field_display_name key value %}</td></tr>
+			{% endfor %}
+		{% else %}
+			<caption>Showing All Vehicles</caption>
+		{% endif %}
+		</table>
+	{% info_box_bottom %}
+	<br/>
+	{% if not parameters.year %}
+	{% info_box_top %}
+		<div>Select a year</div>
+		{% for year in base_queryset.distinct_years %}
+		<a href="year/{{year.year}}/">{{year.year}}</a>
+		{% endfor %}
+	{% info_box_bottom %}
+	{% endif %}
+	
+	{% if not parameters.manufacturer_slug %}
+	{% info_box_top '' %}
+	<div>Select a manufacturer</div>
+	<form>
+		<select onchange="location=this.options[this.selectedIndex].value;" name="manufacturer" style="width: 90%;">
+			<option value=""></option>
+		{% for make in base_queryset.distinct_makes %}
+			<option value="manufacturer/{{make.manufacturer_slug}}">{{make.manufacturer}}</option>
+		{% endfor %}
+		</select>
+	</form>
+	{% info_box_bottom %}
+	{% else %}
+	{% if not parameters.model_slug %}
+	{% info_box_top '' %}
+	<div>Select a model</div>
+	{% for model in base_queryset.distinct_models %}
+	<div><a href="model/{{model.model_slug}}/">{{model.model}}</a></div>
+	{% endfor %}
+	{% info_box_bottom %}
+	{% endif %}
+	{% endif %}
+	
+	{% if not parameters.transmission %}
+	{% info_box_top '' %}
+	<div>Select a transmission</div>
+	{% for transmission in base_queryset.distinct_transmissions %}
+	<div><a href="transmission/{{transmission.transmission}}/">{% display_for_choices_id transmissions transmission.transmission %}</a></div>
+	{% endfor %}
+	{% info_box_bottom %}
+	{% endif %}
+	
+	{% if not parameters.transmission_speed %}
+	{% info_box_top '' %}
+	<div>Select a transmission speed</div>
+	{% for transmission_speed in base_queryset.distinct_transmission_speeds %}
+	<div><a href="transmission_speed/{{transmission_speed.transmission_speed}}/">{% display_for_choices_id transmission_speeds  transmission_speed.transmission_speed %}</a></div>
+	{% endfor %}
+	{% info_box_bottom %}
+	{% endif %}
+	
+	{% if not parameters.vehicle_class %}
+	{% info_box_top '' %}
+	<div>Select a vehicle class</div>
+	{% for class in base_queryset.distinct_vehicle_classes %}
+	<div><a href="vehicle_class/{{class.vehicle_class}}/">{% display_for_choices_id vehicle_classes class.vehicle_class %}</a></div>
+	{% endfor %}
+	{% info_box_bottom %}
+	{% endif %}
+	
+	{% info_box2_top '' %}
+	{% include 'adsense/250x250_text_and_images.html' %}
+	{% info_box2_bottom %}
+
+</div>
+
+<div class="right width_75p">
+    {% if object_list %}
+		{% autopaginate object_list %}
+			{% include 'vehicle/include/table_list.html' %}
+		{% paginate %}
+    {% else %}
+        No vehicles match your search terms.
+    {% endif %}
+</div>
+
+{% endblock %}

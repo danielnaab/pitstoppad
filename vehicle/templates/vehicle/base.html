@@ -1,0 +1,15 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block rtab_id %}id="vehicles_tab"{% endblock %}
+
+{% block head_title %}Vehicles{% endblock %}
+{% block page_title %}Vehicles{% endblock %}
+
+{% block subnav %}
+	<ul>
+		<li><a href="{% url log_add_new %}">{% trans "Search" %}</a></li>
+		<li><a href="{% url log_browse %}">{% trans "Browse All" %}</a></li>
+	</ul>
+{% endblock %}

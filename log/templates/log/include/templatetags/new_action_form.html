@@ -1,0 +1,40 @@
+{% load i18n html_helpers %}
+
+<div id="new_action_tabs">
+	<ul>
+		<li><a href="#fillup_action"><span>Fillup</span></a></li>
+		<li><a href="#maintenance_action"><span>Maintenance</span></a></li>
+	</ul>
+
+	<div id="fillup_action">
+		<form id="new_fillup_action" action="action/new/" method="post">
+			<input type="hidden" name="type" value="FillupAction" />
+			<table>
+				{{ fillup_form.as_table }}
+			</table>
+			<input type="submit" value="{% trans "Add" %}"/>
+		</form>
+	</div>
+	<div id="maintenance_action">
+		<form id="new_maintenance_action" action="action/new/" method="post">
+			<input type="hidden" name="type" value="MaintenanceAction" />
+			<table>
+				{{ action_form.as_table }}
+			</table>
+			<input type="submit" value="{% trans "Add" %}"/>
+		</form>
+	</div>
+</div>
+
+{% block extra_body %}
+	{{ block.super }}
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="http://dev.jquery.com/view/tags/ui/latest/ui/ui.core.js"></script>
+	<script type="text/javascript" src="http://dev.jquery.com/view/tags/ui/latest/ui/ui.tabs.js"></script>
+	<link rel="stylesheet" href="http://dev.jquery.com/view/tags/ui/latest/themes/flora/flora.all.css" type="text/css" media="screen" title="Flora (Default)" />
+	<script>
+		$(document).ready(function(){
+			$("#new_action_tabs > ul").tabs();
+		});
+	</script>
+{% endblock %}

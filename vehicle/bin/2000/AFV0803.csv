@@ -1,0 +1,56 @@
+,"2000 FE GUIDE   -   Alternative-fueled Vehicles  -  Updated 11/22/99",,,,,,,,,
+,,,,,,,,,,
+"CNG VEHICLES*",,,,,,,,,"Range",
+"Manufacturer","carline name","displ","cyl","trans","cty","hwy","drv","fuel","(miles)","Class"
+"CHEVROLET","CAVALIER (bi-fuel natural gas)",2.2,4,"Auto(3-speed)",20,27,"F","CNG",130,"SUBCOMPACT CARS"
+,,,,,22,28,,"Gasoline",360,
+"TOYOTA","CAMRY (natural gas)",2.2,4,"Auto(4-speed)",22,30,"F","CNG",230,"COMPACT CARS"
+"FORD","CONTOUR (bi-fuel natural gas)",2,4,"Auto(4-speed)",20,27,,"CNG",80,"COMPACT CARS"
+,,,,,20,28,"F","Gasoline",270,
+"FORD","F150 PICKUP - 2WD (natural gas)",5.4,8,"Auto(4-speed)",12,16,"R","CNG",250,"STANDARD PICKUP TRUCKS 2WD"
+"FORD","E250 ECONOLINE (natural gas) - 2WD",5.4,8,"Auto(4-speed)",12,15,"R","CNG","190/300**","VANS, CARGO TYPE"
+,,,,,,,,,,
+,,,,,,,,,,
+" *The fuel economy (mpg) values are not available for some models as of press time.    See www.fueleconomy.gov for updated information.",,,,,,,,,,
+"**Driving ranges are shown for both standard and optional fuel tanks.",,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+"ETHANOL FLEXIBLE-FUELED VEHICLES*",,,,,,,,,"Range",
+"Manufacturer","carline name","displ","cyl","trans","cty","hwy","drv","fuel","(miles)","Class"
+"FORD","RANGER FFV - 2WD",3,6,"Manual(5-speed)",18,23,"R","Gasoline","330/400/390**","STANDARD PICKUP TRUCKS 2WD"
+,,,,,13,17,,"E85 Ethanol","240/290/290**",
+"FORD","RANGER FFV - 2WD",3,6,"Auto(4-speed)",17,22,"R","Gasoline","320/380/370**","STANDARD PICKUP TRUCKS 2WD"
+,,,,,12,16,,"E85 Ethanol","230/270/270**",
+"MAZDA","B3000 FFV -  2WD",3,6,"Manual(5-speed)",18,23,"R","Gasoline","330/390***","STANDARD PICKUP TRUCKS 2WD"
+,,,,,13,17,,"E85 Ethanol","240/280***",
+"MAZDA","B3000 FFV - 2WD",3,6,"Auto(4-speed)",17,22,"R","Gasoline","320/370***","STANDARD PICKUP TRUCKS 2WD"
+,,,,,12,16,,"E85 Ethanol","230/270***",
+"FORD","RANGER FFV - 4WD",3,6,"Manual(5-speed)",18,21,4,"Gasoline","320/390/380**","STANDARD PICKUP TRUCKS 4WD"
+,,,,,13,16,,"E85 Ethanol","240/290/280**",
+"FORD","RANGER FFV - 4WD",3,6,"Auto(4-speed)",16,20,4,"Gasoline","290/350/340**","STANDARD PICKUP TRUCKS 4WD"
+,,,,,12,15,,"E85 Ethanol","220/270/260**",
+"MAZDA","B3000 FFV - 4WD",3,6,"Manual(5-speed)",18,21,4,"Gasoline","320/380***","STANDARD PICKUP TRUCKS 4WD"
+,,,,,13,16,,"E85 Ethanol","240/280***",
+"MAZDA","B3000 FFV - 4WD",3,6,"Auto(4-speed)",16,20,4,"Gasoline","290/340***","STANDARD PICKUP TRUCKS 4WD"
+,,,,,12,15,,"E85 Ethanol","220/260***",
+"CHRYSLER","TOWN & COUNTRY FFV - 2WD",3.3,6,"Auto(4-speed)",18,25,"F","Gasoline",420,"SPEC PURP VEH - MINIVAN - 2WD"
+,,,,,13,18,,"E85 Ethanol",300,
+"DODGE","CARAVAN FFV  - 2WD",3.3,6,"Auto(4-speed)",18,25,"F","Gasoline",420,"SPEC PURP VEH - MINIVAN - 2WD"
+,,,,,13,18,,"E85 Ethanol",300,
+"PLYMOUTH","VOYAGER FFV - 2WD",3.3,6,"Auto(4-speed)",18,25,"F","Gasoline",420,"SPEC PURP VEH - MINIVAN - 2WD"
+,,,,,13,18,,"E85 Ethanol",300,
+,,,,,,,,,,
+" *The fuel economy (mpg) values are not available for some models as of press time.    See www.fueleconomy.gov for updated information.",,,,,,,,,,
+"**Ranges are shown for regular cab short wheelbase, regular cab long wheelbase, and super cab models, respectively.",,,,,,,,,,
+"***Ranges are shown for regular cab and super cab models, respectively.",,,,,,,,,,
+,,,,,,,,,,
+"ELECTRIC VEHICLES*",,,,,"Energy Consumption (kw-hr/100 miles)",,,,,
+"Manufacturer","Carline name         Battery",,"Motor",,"cty","hwy",,"fuel","Range(miles)","Class"
+"NISSAN","ALTRA EV                     Lithium-Ion",,"62 kW AC Induction",,29,26,,"Electricity",129,"MID-SIZE STATION WAGONS"
+"FORD","RANGER ELECTRIC   Lead Acid",,"67 kW AC Induction",,38,44,,"Electricity",72,"STANDARD PICKUP TRUCKS 2WD"
+"FORD","RANGER ELECTRIC Nickel Metal Hydride",,"67 kW AC Induction",,40,45,,"Electricity",93,"STANDARD PICKUP TRUCKS 2WD"
+"TOYOTA","RAV4 EV                       Nickel Metal Hybride",,"50 kW DC",,29,37,,"Electricity",126,"SPORT UTILITY VEHICLE 4DR 2WD"
+,,,,,,,,,,
+" *The energy consumption information is not available for some models as of press time.    See www.fueleconomy.gov for updated information.",,,,,,,,,,
+,,,,,,,,,,
+"g:\vpcd/vpg/team2/good/00guide.xls",,,,,,,,,,

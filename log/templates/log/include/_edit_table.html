@@ -1,0 +1,68 @@
+<div id="pager" class="pager" style="padding-top: 1em; padding-bottom: 0;">
+	<form>
+		<img src="/site_media/tablesorter/first.png" class="first"/>
+		<img src="/site_media/tablesorter/prev.png" class="prev"/>
+		<input type="text" class="pagedisplay" readonly />
+		<img src="/site_media/tablesorter/next.png" class="next"/>
+		<img src="/site_media/tablesorter/last.png" class="last"/>
+		<select class="pagesize">
+			<option selected="selected"  value="10">10</option>
+			<option value="20">20</option>
+			<option value="30">30</option>
+			<option value="40">40</option>
+			<option value="50">50</option>
+		</select>
+	</form>
+</div>
+<table id="{{action_type}}_table" class="edit_table tablesorter" style="table-layout: fixed;">
+	<caption>{{action_type|title}} Actions</caption>
+	<thead>
+		<tr>
+			<th class="js_enabled_only" style="width: 4em;">&nbsp;</th>
+			<th>Date</th>
+			<th>{% ifequal request.distance_unit 0 %}Mileage{% else %}Mileage (km){% endifequal %}</th>
+			<th>Tank {% ifequal request.distance_unit 0 %}Miles{% else %}Kilometers{% endifequal %}</th>
+			<th>Tank {% ifequal request.volume_unit 0 %}Gallons{% else %}Liters{% endifequal %}</th>
+			<th>{{ fuel_economy_units }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="expandable_head_row reference_row" style="display: none;">
+			<td class="expandable_head js_enabled_only"></td>
+			<td class="date"></td>
+			<td class="mileage_quantity"></td>
+			<td class="tank_distance"></td>
+			<td class="fillup_volume"></td>
+			<td class="economy"></td>
+		</tr>
+		{% for form_dict in form_handler.forms.FillupActionForm %}
+		{% with form_dict.instance as action %}
+		{% if action %}
+		{% if action.id %}
+		<tr class="expandable_head_row">
+			<td class="expandable_head js_enabled_only"><span style="font-size: 65%;">&#9661;</span> Edit</td>
+			<td class="date">{{action.date}}</td>
+			<td class="mileage_quantity">{% ifequal request.distance_unit 0 %}{{action.mileage}}{% else %}{{action.mileage_km}}{% endifequal %}</td>
+			<td class="tank_distance">{% ifequal request.distance_unit 0 %}{{action.miles|floatformat:2}}{% else %}{{action.kilometers|floatformat:2}}{% endifequal %}</td>
+			<td class="fillup_volume">{% ifequal request.volume_unit 0 %}{{action.gallons|floatformat:2}}{% else %}{{action.liters|floatformat:2}}{% endifequal %}</td>
+			<td class="economy">{{action.get_economy|floatformat:2}}</td>
+		</tr>
+		{% endif %}
+		{% endif %}
+		{% endwith %}
+		<tr class="expand-child expandable_body js_disabled_only">
+			<td colspan="6">
+				{% formhandler_form 'FillupActionForm' form_dict 'updateActionRow' %}</td>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+		<tr class="table_summation">
+			<td class="js_enabled_only"></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>30 mpg</td>
+		</tr>
+	</tfoot>
+</table>

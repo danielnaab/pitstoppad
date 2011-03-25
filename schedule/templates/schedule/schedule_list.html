@@ -1,0 +1,30 @@
+{% extends "schedule/base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load pagination_tags %}
+
+{% block head_title %}All Schedules{% endblock %}
+{% block page_title %}All Schedules{% endblock %}
+
+{% block extra_head %}
+    <link rel="alternate" type="application/atom+xml" title="Blog Post Feed for All Users" href="/feeds/posts/all/" />
+{% endblock %}
+
+{% block body %}
+    {% if object_list %}
+        {% autopaginate object_list %}
+		<ul>
+            {% for schedule in object_list %}
+			<li>
+				{{ schedule }}
+			</li>
+            {% endfor %}
+		</ul>
+        {% paginate %}
+
+    {% else %}
+        No schedules available.
+    {% endif %}
+
+{% endblock %}

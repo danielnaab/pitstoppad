@@ -1,0 +1,12 @@
+<div class="inner_formhandler">
+{% if not form_dict.template %}
+{% for field in form_dict.form %}
+<div class="fieldWrapper">
+	{{ field.errors }}
+	{% if not field.is_hidden %}{{ field.label_tag }}: {% endif %}{{ field }}
+</div>
+{% endfor %}
+{% else %}
+{% include form_dict.template %}
+{% endif %}
+</div>

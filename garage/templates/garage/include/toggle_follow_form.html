@@ -1,0 +1,9 @@
+<form id="toggle_follow_form" method="post" action="{% url garage_toggle_follow %}">
+	<input type="hidden" name="toggle_follow" value="{{followed}}"/>
+	<input type="hidden" name="redirect_path" value="{{redirect_path}}"/>
+	{% if is_following %}
+		You are following {{followed|title}} (<input type="submit" class="as_link" value="unfollow" />)
+	{% else %}
+		<input type="submit" class="as_link" value="Add {{followed|title}}" /> to your follow list
+	{% endif %}
+</form>

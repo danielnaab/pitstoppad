@@ -1,0 +1,22 @@
+{% extends "schedule/base.html" %} 
+
+{% load i18n %} 
+
+{% block body %} 
+	<h1>{{schedule.description}}</h1>
+	<h4>created by <a href="{% url profiles.views.profile schedule.created_by %}">{{schedule.created_by}}</a> {% if can_edit %}(<a href="{% url schedule.views.edit schedule.id %}">edit</a>){% endif %} </h4>
+	<ul class="schedule_list">
+	{% for item in schedule.scheduleitem_set.all %}
+		<li>
+			{{item}}
+			<ul>
+			{% for action in item.scheduleitemaction_set.all %}
+				<li>
+					{{action}}
+				</li>
+			{% endfor %}
+			</ul>
+		</li>
+	{% endfor %}
+	</ul>
+{% endblock %}

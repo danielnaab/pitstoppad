@@ -1,0 +1,24 @@
+{% comment %}This is included by the formhandler_form templatetag for MaintenanceActionForms {% endcomment %}
+{{form.step}}
+<table>
+	<tr>
+		<td>{{form.date.label_tag}}</td>
+		<td>{{form.mileage.label_tag}}</td>
+		<td>{{form.description.label_tag}}</td>
+	</tr>
+	<tr>
+		<td>{{form.date}}</td>
+		<td>{{form.mileage}}</td>
+		<td>{{form.description}}</td>
+	</tr>
+	<tr>
+		<td>{{form.date.errors}}</td>
+		<td>{{form.mileage.errors}}</td>
+		<td>{{form.description.errors}}</td>
+	</tr>
+</table>
+<div>
+	<div>{{form.notes.label_tag}}</div>
+	<div>{{form.notes}}</div>
+	<div>{{form.notes.errors}}</div>
+</div>

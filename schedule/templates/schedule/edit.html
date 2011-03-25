@@ -1,0 +1,32 @@
+{% extends "schedule/base.html" %} 
+{% load i18n %} 
+{% load schedules %}
+
+{% block body %} 
+	<h1>{% trans "Schedule"%}</h1>
+	<form action="" method="post">
+		<table>
+			{{ form.as_table }}
+		</table>
+		<input type="submit" value="{% trans "Save" %} &raquo;"/>
+	</form>
+{% for item in schedule.scheduleitem_set.all %}
+	{% schedule_item_form item %}
+{% endfor %}
+{% endblock %}
+
+{% block extra_body %}
+{{ block.super }}
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			// hide the all of the element with class expandable_body
+			$(".expandable_body").hide();
+			// toggle the componenet with class expandable_body
+			$(".expandable_head").click(function()
+			{
+				$(this).next(".expandable_body").slideToggle(100);
+			});
+		});
+	</script>
+{% endblock %}

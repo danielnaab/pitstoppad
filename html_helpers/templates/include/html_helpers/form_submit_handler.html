@@ -1,0 +1,5 @@
+function showResponse(responseText, statusText) {
+	alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.'); 
+}
+
+$('form#{{id}}').ajaxForm( {success: showResponse} );

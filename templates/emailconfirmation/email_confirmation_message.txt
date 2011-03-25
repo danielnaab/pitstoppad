@@ -1,0 +1,5 @@
+{% load i18n %}{% blocktrans with current_site.name as site_name %}User '{{ user }}' at {{ site_name }} has registered your address at pitstoppad.com.
+
+To confirm this is correct, go to {{ activate_url }}
+Thank you for registering at pitstoppad.com!
+{% endblocktrans %}

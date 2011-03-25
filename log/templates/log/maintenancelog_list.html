@@ -1,0 +1,31 @@
+{% extends "log/base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load pagination_tags %}
+
+{% block head_title %}{% if username %}{{ username|capfirst }}'s {% trans "Logs" %}{% else %}{% trans "All Logs" %}{% endif %}{% endblock %}
+{% block page_title %}{% if username %}{{ username|capfirst }}'s {% trans "Logs" %}{% else %}{% trans "All Logs" %}{% endif %}{% endblock %}
+
+{% block extra_head %}
+	{{ block.super }}
+    <link rel="alternate" type="application/atom+xml" title="Blog Post Feed for All Users" href="/feeds/posts/all/" />
+{% endblock %}
+
+{% block body %}
+
+    {% if object_list %}
+	<ul>
+	{% autopaginate object_list %}
+		{% for log in object_list %}
+		<li>
+			<a href="{% url log_view user log.id %}">{{ log.vehicle }}</a>{% ifequal log.user user %} <a href="{% url log_edit log.id %}">edit</a>{% endifequal %}
+		</ul>
+		{% endfor %}
+	{% paginate %}
+	</ul>
+    {% else %}
+        No logs available.
+    {% endif %}
+
+{% endblock %}

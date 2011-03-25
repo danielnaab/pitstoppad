@@ -1,0 +1,23 @@
+{% comment %}This is included by the formhandler_form templatetag for DynamicVehicleSelectForm {% endcomment %}
+{% with form_dict.form as form %}
+<table>
+	<tr>
+		<td>{{form.year.label_tag}} {{form.year}}</td>
+		<td>{{form.make.label_tag}} {{form.make}}</td>
+		<td>{{form.model.label_tag}} {{form.model}}</td>
+	</tr>
+</table>
+
+{% with form.get_matching_vehicles as vehicles %}
+{% if vehicles %}
+<table class="vehicle_list">
+	<caption>Which vehicle to add?</caption>
+	{% for vehicle in vehicles %}
+	{% with vehicle.get_add_to_garage_url as vehicle_url %}
+		{% include 'vehicle/include/table_row.html' %}
+	{% endwith %}
+	{% endfor %}
+</table>
+{% endif %}
+{% endwith %}
+{% endwith %}

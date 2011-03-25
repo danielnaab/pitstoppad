@@ -1,0 +1,99 @@
+<div id="searchForm">Loading...</div>
+	<table class="search-control">
+		<td>
+			<div id="imageSearchControl" class="search-control">
+				Loading...
+			</div>
+		</td>
+</table>
+
+{% block vehicle_script %}
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <style type="text/css">
+      table.search-control {
+        width: 100%;
+      }
+      table.search-control .gsc-control {
+        width: 100%;
+      }
+      td {
+        vertical-align: top;
+      }
+      /* Disable built in search forms */
+      .gsc-control form.gsc-search-box {
+        display: none;
+      }
+      /* restrict global search form width */
+      #searchForm {
+        width: 300px;
+		display: none;
+      }
+      #imageSearchControl .gsc-resultsRoot {
+        padding-top: 6px;
+      }
+      /* long form visible urls should be on */
+      .gsc-webResult div.gs-visibleUrl-long {
+        display: block;
+      }
+      .gsc-webResult div.gs-visibleUrl-short {
+        display: none;
+      }
+    </style>
+    <script type="text/javascript">
+      google.load('search', '1');
+
+      function se() {
+        var sFormDiv = document.getElementById("searchForm");
+        var scDiv = document.getElementById("imageSearchControl");
+
+        // create a custom search form
+        this.imageSearchControl = new google.search.SearchControl();
+        this.searchForm = new google.search.SearchForm(true, sFormDiv);
+
+        // bind clear and submit functions
+        this.searchForm.setOnSubmitCallback(this, se.prototype.onSubmit);
+        this.searchForm.setOnClearCallback(this, se.prototype.onClear);
+
+        // set up for large result sets
+        this.imageSearchControl.setResultSetSize(GSearch.LARGE_RESULTSET);
+
+        var searcher;
+        var options;
+
+        // vertical layout, image and blog
+        this.imageSearchControl.addSearcher(new google.search.ImageSearch());
+        this.imageSearchControl.addSearcher(new google.search.VideoSearch());
+
+        var drawOptions = new google.search.DrawOptions();
+        drawOptions.setDrawMode(GSearchControl.DRAW_MODE_TABBED);
+
+        this.imageSearchControl.setNoResultsString(GSearchControl.NO_RESULTS_DEFAULT_STRING);
+        this.imageSearchControl.draw(scDiv);
+
+        // execute a starter search
+        this.searchForm.execute("{{search_terms}}");
+      }
+
+      // when the form fires a submit, grab its
+      // value and call the control
+      se.prototype.onSubmit = function(form) {
+        var q = form.input.value;
+        if (q && q!= "") {
+          this.imageSearchControl.execute(q);
+        }
+        return false;
+      }
+
+      // when the form fires a clear, call the control
+      se.prototype.onClear = function(form) {
+        this.imageSearchControl.clearAllResults();
+        form.input.value = "";
+        return false;
+      }
+
+      function OnLoad() {
+        new se();
+      }
+      google.setOnLoadCallback(OnLoad, true);
+    </script>
+{% endblock %}

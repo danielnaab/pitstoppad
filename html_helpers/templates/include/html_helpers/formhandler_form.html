@@ -1,0 +1,17 @@
+<form id="{{form_class_name}}_{{form_dict.form_id}}" {% if use_ajax %}class="form_handler"{% endif %} action="." method="post">
+	<div>
+		<input type="hidden" name="form_class_name" value="{{form_class_name}}" />
+		<input type="hidden" name="form_id" value="{{form_dict.form_id}}" />
+		<input type="hidden" class="extra_handler" name="extra_handler" value="{{extra_handler}}" />
+		{% with form_dict.form as form %}
+		{% include 'include/html_helpers/formhandler_inner.html' %}
+		{% endwith %}
+		<div>
+			<input class="{{form_dict.submit_classes}}" type="submit" value="{{form_dict.submit_text}}" />
+		{% comment %}
+			<input class="cancel js_enabled_only" value="Cancel" />
+			<input type="reset" value="Reset" />
+		{% endcomment %}
+		</div>
+	</div>
+</form>

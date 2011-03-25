@@ -1,0 +1,43 @@
+{% comment %}This is included by the formhandler_form templatetag for FillupActionForms {% endcomment %}
+{{form.step}}
+<div class="clearfix">
+	<div class="clearfix">
+		<div style="float: left;">
+			<div>{{form.instance.date|date:"M d, Y"}}</div>
+			<div>{{form.date}}</div>
+			<div>{{form.date.errors}}</div>
+		</div>
+	</div>
+	<div class="clearfix">
+		<div style="float: left;">
+			<div>{{form.fillup_volume.label_tag}}</div>
+			<div>{{form.fillup_volume}}</div>
+			<div>{{form.fillup_volume.errors}}</div>
+		</div>
+		<div style="float: left;">
+			<div>{{form.fuel_type.label_tag}}</div>
+			<div>{{form.fuel_type}}</div>
+			<div>{{form.fuel_type.errors}}</div>
+		</div>
+	</div>
+	<div class="clearfix">
+		<div style="float: left;">
+			<div>{{form.tank_distance.label_tag}}</div>
+			<div>{{form.tank_distance}}</div>
+			<div>{{form.tank_distance.errors}}</div>
+		</div>
+		<div style="float: left;"><br/>or</div>
+		<div style="float: left;">
+			<div>{{form.mileage_quantity.label_tag}}</div>
+			<div>{{form.mileage_quantity}}</div>
+			<div>{{form.mileage_quantity.errors}}</div>
+		</div>
+	</div>
+	<div class="clearfix">
+		<div style="float: left;">
+			<div>{{form.notes.label_tag}}</div>
+			<div>{{form.notes}}</div>
+			<div>{{form.notes.errors}}</div>
+		</div>
+	</div>
+</div>

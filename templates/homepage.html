@@ -1,0 +1,40 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block tab_id %}id="home_tab"{% endblock %}
+
+{% block body %}
+    <table width="100%">
+		<tr style="text-align: center; vertical-align: top; ">
+			<td width="33%">
+				<h1 style="text-align: center;">Log</h1>
+				Keep track of your vehicle's gas mileage, oil changes, and maintenance or repair operations.
+			</td>
+			<td width="33%">
+				<h1 style="text-align: center;">Track</h1>
+				Get notified, automatically, when your vehicle is due for regular maintenance.
+			</td>
+			<td width="33%">
+				<h1 style="text-align: center;">Analyze</h1>
+				Track your vehicle's fuel economy, total cost of ownership, and more - and compare your performance with other users!
+			</td>
+		</tr>
+		<tr style="text-align: center; vertical-align: top;">
+			<td width="33%">
+				<div class="three_steps_image">
+				</div>
+			</td>
+			<td width="33%">
+				<div class="three_steps_image">
+				</div>
+			</td>
+			<td width="33%">
+				<div class="three_steps_image">
+				</div>
+			</td>
+		</tr>
+	</table>
+{% endblock %}

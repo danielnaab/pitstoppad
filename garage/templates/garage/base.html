@@ -1,0 +1,17 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block rtab_id %}id="garages_tab"{% endblock %}
+
+{% block head_title %}Garage{% endblock %}
+{% block page_title %}Garage{% endblock %}
+
+{% block subnav %}
+	<ul>
+    {% if user.is_authenticated %}
+		<li><a href="{% url garage_my_garage %}">{% trans "My Garage" %}</a></li>
+    {% endif %}
+		<li><a href="{% url garage_browse %}">{% trans "Browse All Garages" %}</a></li>
+	</ul>
+{% endblock %}

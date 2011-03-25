@@ -1,0 +1,13 @@
+{% load i18n %}
+
+<div class="expandable_head">
+	<h5>{% trans "Schedule Item Action"%}</h5>
+</div>
+<div class="expandable_body">
+	<form action="item/{{schedule_item_action.schedule_item.id}}/action/{{schedule_item_action.id}}/" method="post">
+		<table>
+			{{ form.as_table }}
+		</table>
+		<input type="submit" value="{% trans "Save" %}"/>
+	</form>
+</div>

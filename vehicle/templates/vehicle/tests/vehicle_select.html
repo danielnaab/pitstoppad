@@ -1,0 +1,28 @@
+{% extends "vehicle/base.html" %} 
+
+{% load i18n ajax html_helpers cache_buster %}
+{% load pagination_tags %}
+{% load vehicles %}
+{% load extra_filters %}
+
+{% block head_title %}Browse Vehicles{% endblock %}
+{% block page_title %}Browse Vehicles{% endblock %}
+	
+{% block body %}
+<div>
+	<form class="" method="post" action=".">
+	{%comment%}
+		{% include 'vehicle/include/vehicle_select_form.html' %}
+		<input class="js_disabled_only" type="submit" value="Search Vehicle" />
+	{%endcomment%}
+	{% with form_handler.forms.DynamicVehicleSelectForm.0 as form_dict %}
+		{% formhandler_form 'DynamicVehicleSelectForm' form_dict %}
+	{% endwith %}
+</div>
+{% endblock %}
+
+{% block extra_body %}
+{{ block.super }}
+	{% js_tag 'js/jquery.form.js' %}
+	{% formhandler_head form_handler 'updateActionRow' %}
+{% endblock %}

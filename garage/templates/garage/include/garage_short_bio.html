@@ -1,0 +1,23 @@
+{% load html_helpers %}
+
+{% info_box_top %}
+	<table width="100%">
+		<caption>{{garage.user|title}}'s Recent Posts</caption>
+		<tbody>
+			{% for post in recent_posts %}
+			<tr><td><a href="{{post.get_absolute_url}}">{{post.created_at|date:"m/d/Y"}} {{post.title}}</a></td></tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% info_box_bottom %}
+
+{% info_box_top %}
+	<table width="100%">
+		<caption>Vehicles in {{garage.user|title}}'s Garage</caption>
+		<tbody>
+			{% for vehicle in garage.garagevehicle_set.all %}
+			<tr><td><a href="{{vehicle.vehicle.get_absolute_url}}">{{vehicle}}</a></td></tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% info_box_bottom %}

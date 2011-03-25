@@ -1,0 +1,30 @@
+{% extends "log/base.html" %} 
+
+{% load i18n html_helpers %} 
+
+{% block head_title %}{{action.description}} on {{log.vehicle}}{% endblock %}
+{% block page_title %}{{action.description}} on <a href="{% url log_view log.user log.id %}">{{log.vehicle}}</a>{% endblock %}
+
+{% block body %}
+
+{% if expenses %}
+	{% info_box_top 'right' %}
+		<strong>Expenses</strong>
+		{% for expense in expenses %}
+		<div>{{expense}}</div>
+		{% endfor %}
+	{% info_box_bottom %}
+{% endif %}
+
+{% info_box_top 'left' %}
+	<div>At <strong>{{action.mileage}}</strong> miles on <strong>{{action.date|date:"M d, Y"}}</strong></div>
+	<div>from log <a href="{% url log_view log.user log.id %}">{{log.vehicle}}</a> by <a href="{% url profile_detail log.user %}">{{log.user}}</a></div>
+	{% if can_edit %}<div><strong><a href="{% url log_edit log.id %}#action_{{action.id}}">Edit Action</a></strong></div>{% endif %}
+{% info_box_bottom %}
+
+<div class="clearfix"></div>
+<p>{{action.description}}</p>
+
+<div class="center">{% include "adsense/728x90.html" %}</div>
+
+{% endblock %}

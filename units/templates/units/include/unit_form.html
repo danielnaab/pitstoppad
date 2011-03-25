@@ -1,0 +1,12 @@
+{% load units %}
+
+<form style="display: inline;" id="select_units" method="post" action="{% url units.views.set_units %}">
+	<div style="display: inline;">
+		<select onchange="this.form.submit()" name="units">
+			<option value="0" {% ifequal request.metric 0 %}selected="selected"{% endifequal %}>Imperial</option>
+			<option value="1" {% ifequal request.metric 1 %}selected="selected"{% endifequal %}>Metric</option>
+		</select>
+		<input type="hidden" name="redirect_path" value="{{request.path}}"/>
+		<input class="js_disabled_only" type="submit" value="OK" />
+	</div>
+</form>

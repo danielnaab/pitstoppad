@@ -1,0 +1,7 @@
+<table class="vehicle_list">
+	{% for vehicle in object_list %}
+	{% with vehicle.get_absolute_url as vehicle_url %}
+		{% include 'vehicle/include/table_row.html' %}
+	{% endwith %}
+	{% endfor %}
+</table>

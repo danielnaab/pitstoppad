@@ -1,0 +1,32 @@
+{% load i18n html_helpers %}
+
+{% if action %}
+{% corner_box_top "expandable_head" %}
+	<div id="action_{{action.id}}">{{action.mileage}} Miles / {{action.date|date:"m/d/Y"}}</div>
+	{{action.description}}
+{% corner_box_bottom %}
+
+<div class="expandable_body">
+{% endif %}
+
+{% if action.id %}
+	<form id="{{action_form_id}}" action="." method="post">
+	<h4>{{caption}}</h4>
+{% else %}
+	<h4>Add new maintenance action</h4>
+	<form id="action_form_new" action="." method="post">
+{% endif %}
+		<table>
+			{{ form.as_table }}
+			<input type="hidden" name="type" value="MaintenanceAction" />
+		</table>
+		<input type="submit" value="{% trans "Save" %}"/>
+	</form>
+{% if action %}
+</div>
+{% endif %}
+
+{% block extra_body %}
+{{ block.super }}
+<script type="text/javascript">$(document).ready(function() { {% form_submit_handler form action_form_id '' %} }</script>
+{% endblock %}

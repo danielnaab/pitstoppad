@@ -1,0 +1,28 @@
+{% comment %}This is included by the formhandler_form templatetag for GarageVehicleForms {% endcomment %}
+{% with form_dict.form as form %}
+<table>
+	{% if form.instance.id %}
+	<caption>Edit {{form.instance.vehicle}}</caption>
+	{% else %}
+	<caption>Add a {{form.instance.vehicle}} to your garage</caption>
+	{% endif %}
+	<tr>
+		<td>{{form.purchase_date.label_tag}}</td>
+		<td>{{form.purchase_price.label_tag}}</td>
+	</tr>
+	<tr>
+		<td>{{form.purchase_date}}</td>
+		<td>{{form.purchase_price}}</td>
+	</tr>
+	<tr>
+		<td>{{form.purchase_date.errors}}</td>
+		<td>{{form.purchase_price.errors}}</td>
+	</tr>
+</table>
+<div>
+	<div>{{form.notes.label_tag}}</div>
+	<div>{{form.notes}}</div>
+	<div>{{form.notes.errors}}</div>
+	{{form.vehicle}}
+</div>
+{% endwith %}
