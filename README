@@ -1,5 +1,7 @@
 PitstopPad is an incomplete automotive vehicle maintenance log written in Python with the Django web framework.
 
+PitstopPad is © Daniel Naab and provided for educational purposes only.
+
 Dependencies
 ------------
 
