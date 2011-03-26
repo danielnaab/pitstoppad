@@ -91,14 +91,16 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     
     'pagination.middleware.PaginationMiddleware',
+    'openid_consumer.middleware.OpenIDMiddleware',
     
     'units.middleware.ThreadLocals',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.request',
+    "socialauth.context_processors.facebook_api_key",
     'django.core.context_processors.media',
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
 )
 
 ROOT_URLCONF = 'pitstoppad.urls'
@@ -120,7 +122,10 @@ INSTALLED_APPS = (
     
     'django_extensions',
     'pagination',
-
+    
+    'socialauth',
+    'openid_consumer',
+    
     'units',
     'html_helpers',
     'adsense',
@@ -131,8 +136,15 @@ INSTALLED_APPS = (
     'gadget',
 )
 
+LOGIN_REDIRECT_URL = LOGOUT_REDIRECT_URL = '/'
+
 EMAIL_HOST = SERVER_EMAIL = EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'danielnaab@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
