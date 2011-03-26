@@ -97,10 +97,9 @@ MIDDLEWARE_CLASSES = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "socialauth.context_processors.facebook_api_key",
     'django.core.context_processors.media',
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.request",
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
 )
 
 ROOT_URLCONF = 'pitstoppad.urls'
@@ -123,8 +122,8 @@ INSTALLED_APPS = (
     'django_extensions',
     'pagination',
     
-    'socialauth',
-    'openid_consumer',
+    'la_facebook',
+    'connect',
     
     'units',
     'html_helpers',
@@ -136,13 +135,14 @@ INSTALLED_APPS = (
     'gadget',
 )
 
-LOGIN_REDIRECT_URL = LOGOUT_REDIRECT_URL = '/'
-
 EMAIL_HOST = SERVER_EMAIL = EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'danielnaab@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
+
+AUTH_PROFILE_MODULE = 'connect.Profile'
+LOGIN_REDIRECT_URL = 'home'
 
 try:
     from local_settings import *

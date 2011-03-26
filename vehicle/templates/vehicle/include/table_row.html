@@ -1,18 +1,15 @@
 <tr class="vehicle_list_row">
 	<td><a href="{{ vehicle_url }}">
-		<div><strong>{{ vehicle.year }} {{ vehicle.manufacturer }} {{ vehicle.model }}</strong></div>
-			<div>Class: {{ vehicle.get_vehicle_class_display }}</div>
+		<strong>{{ vehicle.year }} {{ vehicle.manufacturer }} {{ vehicle.model }}</strong><br/>
+		Class: {{ vehicle.get_vehicle_class_display }}
 	</a></td>
 	<td style="text-align: right;">
-		<div>
-			<div>{{ vehicle.displacement_in_liters }} Liters</div>
-			<div>{{ vehicle.number_of_cylinders }} Cylinders</div>
-		</div>
+		{{ vehicle.displacement_in_liters }} Liters<br/>
+		{{ vehicle.number_of_cylinders }} Cylinders
 	</td>
 	<td style="text-align: right;">
-		<div>
-			<div>{{ vehicle.get_transmission_display }}</div>
-			<div>{{ vehicle.get_drive_axle_type_display }}</div>
-		</div>
+		{{ vehicle.get_transmission_display }}<br/>
+		{{ vehicle.get_drive_axle_type_display }}
+		
 	</td>
 </tr>

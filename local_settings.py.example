@@ -1,10 +1,13 @@
-TWITTER_CONSUMER_KEY     = ''
-TWITTER_CONSUMER_SECRET  = ''
-FACEBOOK_APP_ID          = ''
-FACEBOOK_API_SECRET      = ''
-LINKEDIN_CONSUMER_KEY    = ''
-LINKEDIN_CONSUMER_SECRET = ''
-ORKUT_CONSUMER_KEY       = ''
-ORKUT_CONSUMER_SECRET    = ''
-GOOGLE_CONSUMER_KEY      = ''
-GOOGLE_CONSUMER_SECRET   = ''
+FACEBOOK_APP_ID = '197228753633353'
+FACEBOOK_APP_SECRET = 'e6dbf5f3e3223ab25697f7cd2de413a0'
+
+FACEBOOK_ACCESS_SETTINGS = {
+        'FACEBOOK_APP_ID': FACEBOOK_APP_ID,
+        'FACEBOOK_APP_SECRET': FACEBOOK_APP_SECRET,
+        'LOG_LEVEL': 'DEBUG',
+        'LOG_FILE': '/tmp/la_facebook.log',
+        # The following keys are optional
+        # TODO - Comment next line out but still have tests pass
+        'CALLBACK': 'la_facebook.callbacks.default.default_facebook_callback', 
+        #'PROVIDER_SCOPE': ['email','read_stream'], # here as sample - optional
+}

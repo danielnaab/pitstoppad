@@ -1,6 +1,6 @@
 {% load i18n cache_buster %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xmlns:fb="http://www.facebook.com/2008/fbml" {% block extra_html_declare %}{% endblock %}>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>{% if site_name %}{{ site_name }} - {% endif %}{% block head_title %}{{page_title}}{% endblock %}</title>
@@ -9,6 +9,7 @@
                 zoom: 1; /* trigger hasLayout */
             }
         </style><![endif]-->
+		
         {% js_tag 'js/jquery.js' %}
 		{% css_tag 'css/base.css' %}
 		{% if LANGUAGE_BIDI %}
@@ -26,6 +27,7 @@
 		<script type="text/javascript">
 			document.body.className += ' has_js';
 		</script>
+		
         {% if site_wide_announcements %}
             <div id="site_wide_announcements">
                 <ul>
@@ -82,7 +84,7 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-            
+
             {% block body %}
             {% endblock %}
             

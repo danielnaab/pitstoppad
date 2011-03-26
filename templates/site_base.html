@@ -3,12 +3,13 @@
 {% load i18n %}
 
 {% block login %}
-    {% if user.is_authenticated %}
-        <b>{{ user }}</b> | <a href="">{% trans "Inbox" %} ({{ combined_inbox_count }})</a> | <a href="">{% trans "Account" %}</a> | {% if user.is_staff %}<a href="/admin/">{% trans "Admin" %}</a> | {% endif %}<a href=""{% trans "Logout" %}</a>
-    {% else %}
-        <a href="">{% trans "Login" %}</a> {% trans "or" %} <a href=""><b>{% trans "Sign up" %}</b></a>
-    {% endif %}
+	Units Preference:
 	{% include 'units/include/unit_form.html' %}
+	{% if user.is_authenticated %}
+		{% if user.is_staff %}<a href="/admin/">{% trans "Admin" %}</a> | {% endif %}<a onclick="FB.logout(); window.location='';" href="{% url logout %}">Logout</a>
+    {% else %}
+		<a href="{% url la_facebook_login %}?next=home">Login with FaceBook</a>
+	{% endif %}
 {% endblock %}
 
 {% block logo_link_image %}
@@ -33,8 +34,8 @@
 		{% else %}
 			<td class="tab rtab_garages"><div><a href="{% url garage_browse %}">{% trans "Garage" %}</a></div></td>
 		{% endif %}
-			<td class="tab rtab_logs"><div><a href="{% url log.views.logs user %}">{% trans "Logs" %}</a></div></td>
-			<td class="tab rtab_schedules"><div><a href="{% url schedule.views.list_schedules user %}">{% trans "Schedules" %}</a></div></td>
+			<td class="tab rtab_logs"><div><a href="{% url log.views.logs %}">{% trans "Logs" %}</a></div></td>
+			<td class="tab rtab_schedules"><div><a href="{% url schedule.views.list_schedules %}">{% trans "Schedules" %}</a></div></td>
 			<td class="tab rtab_vehicles"><div><a href="{% url vehicle_browse %}">{% trans "Vehicles" %}</a></div></td>
 			{% comment %}
 			<td class="tab rtab_profile"><div><a href="{% url profiles.views.profile user %}">{% trans "Profile" %}</a></div></td>

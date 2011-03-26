@@ -21,9 +21,11 @@ Installation instructions
     
     pip install -r requirements.txt
     
+    copy local_settings.py.example local_settings.py
+    
     ./manage.py syncdb
     ./manage.py import_vehicles
     
     ./manage.py runserver
 
-Previously, Pinax's user account management was being used, but it was ripped out to simplify the codebase and dependencies.  In the future, Facebook connect will be used for authentication.  For now, log in using the admin account created during `syncdb` at http://localhost:8000/admin, then go to http://localhost:8000.
+If you're running on http://localhost:8000, the Facebook Connect login will function.  If not, use the admin login instead: http://localhost:8000/admin

@@ -11,6 +11,10 @@ urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
     
+    # auth
+    url(r'^facebook/', include('connect.urls')),
+    url(r'^facebook/', include('la_facebook.urls')),
+    
     url(r'^$', direct_to_template, {'template': 'homepage.html'}, name='home'),
     url(r'^about/$', direct_to_template, {'template': 'about/about.html'}, name='about'),
     url(r'^terms-and-conditions/$', direct_to_template, {'template': 'about/terms.html'}, name='terms'),
@@ -23,6 +27,12 @@ urlpatterns = patterns('',
     (r'^vehicles/', include('vehicle.urls')),
     (r'^garage/', include('garage.urls')),
     (r'^gadgets/', include('gadget.urls')),
+)
+
+from django.contrib.auth.views import login, logout
+urlpatterns += patterns('',
+    url(r'^accounts/login/$', login, name='login'),
+    url(r'^accounts/logout/$', logout, {'next_page':'/'}, name='logout')
 )
 
 if settings.LOCAL_DEVELOPMENT:
