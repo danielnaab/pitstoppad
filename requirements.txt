@@ -1,0 +1,6 @@
+django
+django-extensions
+django-pagination
+httplib2
+oauth2
+-e git+https://github.com/cartwheelweb/django-la-facebook.git#egg=Package

@@ -5,8 +5,13 @@ PitstopPad is © Daniel Naab and provided for educational purposes only.
 Dependencies
 ------------
 
+Python 2.6
 Django 1.3
+django-extensions
 django-pagination
+httplib2
+oauth2
+django-la-facebook
 
 Installation instructions
 -------------------------
@@ -21,11 +26,11 @@ Installation instructions
     
     pip install -r requirements.txt
     
-    copy local_settings.py.example local_settings.py
+    cp local_settings.py.example local_settings.py
     
     ./manage.py syncdb
     ./manage.py import_vehicles
     
     ./manage.py runserver
 
-If you're running on http://localhost:8000, the Facebook Connect login will function.  If not, use the admin login instead: http://localhost:8000/admin
+If you're running on http://localhost:8000, the Facebook Connect login will function.  If not, use the admin login instead: http://localhost:8000/admin.  The default local_settings.py.example includes working Facebook app keys.
