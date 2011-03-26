@@ -91,7 +91,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     
     'pagination.middleware.PaginationMiddleware',
-    'openid_consumer.middleware.OpenIDMiddleware',
     
     'units.middleware.ThreadLocals',
 )
