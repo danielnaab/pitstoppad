@@ -9,9 +9,11 @@
 
 {% block subnav %}
 	<ul>
+{% comment %}
     {% if user.is_authenticated %}
 		<li><a href="{% url garage_my_garage %}">{% trans "My Garage" %}</a></li>
     {% endif %}
 		<li><a href="{% url garage_browse %}">{% trans "Browse All Garages" %}</a></li>
 	</ul>
+{% endcomment %}
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "log/base.html" %} 
+{% extends "garage/base.html" %} 
 {% load i18n logs ajax html_helpers cache_buster units %}
 
 {% block extra_head %}
@@ -10,7 +10,11 @@
 {% block body %}
 <div class="left width_50p">
 	{% info_box_top %}
+	{% if 0 %}
 	<strong>{{log.user|title}}'s {{log.vehicle}} Maintenance Log</strong>
+	{% else %}
+	<strong>Your {{log.vehicle}} Maintenance Log</strong>
+	{% endif %}
 	{% info_box_bottom %}
 
 	{% info_box_top %}
@@ -27,9 +31,11 @@
 </div>
 
 <div class="right width_50p">
+	{% comment %}
 	{% if log %}
 	<a href="{% url log_view log.user log.id %}">View this log</a>
 	{% endif %}
+	{% endcomment %}
 	<table id="fillup_table" class="edit_table tablesorter" style="table-layout: fixed;">
 		<caption>
 			<div class="left" style="margin-top: .2em;">Fillup Actions</div>
@@ -99,7 +105,7 @@
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
-				<td>30 mpg</td>
+				<td>TODO</td>
 			</tr>
 		</tfoot>
 	</table>

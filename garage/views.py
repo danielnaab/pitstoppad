@@ -11,7 +11,8 @@ from vehicle.forms import DynamicVehicleSelectForm
 from forms import *
 from models import *
 
-def browse(request, template_name='garage/browse.html'):
+@login_required
+def browse(request, username=None, template_name='garage/browse.html'):
     """
     A basic view that wraps ``django.views.list_detail.object_list``
     """
@@ -96,6 +97,7 @@ def garage_form_handler(request, username):
 def my_garage(request, username=None):
     return garage_form_handler(request, username)
 
+@login_required
 def view_garage(request, username, template_name='garage/my_garage.html'):
     # we re-use the FormHandler from my_garage, so we can use the same template for
     # both "edit" and "view" garage pages.  Since we aren't decorated with @handles_forms,

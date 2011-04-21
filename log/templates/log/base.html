@@ -10,9 +10,11 @@
 {% block subnav %}
     {% if user.is_authenticated %}
 	<ul>
+{% comment %}
 		<li><a href="{% url log_add_new %}">{% trans "Add Log" %}</a></li>
-		<li><a href="{% url log_user_list user %}">{% trans "My Logs" %}</a></li>
+		<li><a href="{% url log_user_list user.username %}">{% trans "My Logs" %}</a></li>
 		<li><a href="{% url log_browse %}">{% trans "Browse All" %}</a></li>
+{% endcomment %}
 	</ul>
     {% else %}
         &nbsp;

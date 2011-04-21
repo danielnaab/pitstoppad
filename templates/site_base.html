@@ -29,12 +29,10 @@
 {% block right_tab %}
 	<table>
 		<tr>
-		{% if user.is_authenticated %}
 			<td class="tab rtab_garages"><div><a href="{% url garage_my_garage %}">{% trans "Garage" %}</a></div></td>
-		{% else %}
-			<td class="tab rtab_garages"><div><a href="{% url garage_browse %}">{% trans "Garage" %}</a></div></td>
-		{% endif %}
+			{% comment %}
 			<td class="tab rtab_logs"><div><a href="{% url log.views.logs %}">{% trans "Logs" %}</a></div></td>
+			{% endcomment %}
 			<td class="tab rtab_schedules"><div><a href="{% url schedule.views.list_schedules %}">{% trans "Schedules" %}</a></div></td>
 			<td class="tab rtab_vehicles"><div><a href="{% url vehicle_browse %}">{% trans "Vehicles" %}</a></div></td>
 			{% comment %}

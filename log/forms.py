@@ -17,7 +17,7 @@ class NewActionStartForm(forms.Form):
     step = forms.IntegerField(initial=-1, widget=forms.HiddenInput)
     
     date = MyDateField(label='Date')
-    action_type = forms.ChoiceField(choices=ACTION_TYPE_STRINGS, widget=forms.RadioSelect)
+    action_type = forms.ChoiceField(choices=ACTION_TYPE_STRINGS, widget=forms.RadioSelect, initial=1)
     
     def __init__(self, *args, **kwargs):
         self.extra_return_data = kwargs.pop('extra_return_data', {})

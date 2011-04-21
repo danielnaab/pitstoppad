@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xmlns:fb="http://www.facebook.com/2008/fbml" {% block extra_html_declare %}{% endblock %}>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>{% if site_name %}{{ site_name }} - {% endif %}{% block head_title %}{{page_title}}{% endblock %}</title>
+        <title>PitstopPad - {% block head_title %}{% if page_title %}{{page_title}}{% else %}Welcome{% endif %}{% endblock %}</title>
         <!--[if IE]><style>
             div {
                 zoom: 1; /* trigger hasLayout */
@@ -71,7 +71,7 @@
 		</div>
         <div id="subnav" class="clearfix">
 			<div class="container">
-				<span id="page_title">{% block page_title %}{{page_title}}{% endblock %}</span>
+				<span id="page_title">{% block page_title %}{% if page_title %}{{ page_title }}{% else %}&nbsp;{% endif %}{% endblock %}</span>
 				{% block subnav %}{% endblock %}
 			</div>
 		</div>

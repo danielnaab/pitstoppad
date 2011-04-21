@@ -25,7 +25,7 @@ class Schedule(TimeStampedModel):
     objects = ScheduleManager()
     
     def __unicode__(self):
-        return '%s, %s' % (self.description, self.created_by.username)    
+        return '%s, %s' % (self.description, self.created_by.username)
 
 DAYS = 0
 MONTHS = 1
