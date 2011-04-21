@@ -44,7 +44,11 @@ class GarageVehicle(models.Model):
     log = models.OneToOneField(MaintenanceLog, null=True, blank=True)
     
     purchase_date = models.DateField(null=True, blank=True)
-    purchase_price = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
+    # TODO: make this a decimal.  we're not doing anything with it yet and we don't handle currency,
+    # so just a CharField for now
+    #purchase_price = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
+    purchase_price = models.CharField(max_length=12, null=True, blank=True)
+    
     notes = models.TextField(blank=True)
     
     def __unicode__(self):
